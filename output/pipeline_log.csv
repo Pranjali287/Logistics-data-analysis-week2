@@ -1,0 +1,10 @@
+step,rows,missing_cells,note
+0. Raw load,5060,1013,
+1. Remove exact duplicates,5004,999,removed 56 rows
+2. Standardise text labels,5004,999,"trim, case, separator unification"
+3. Parse mixed timestamp formats,5004,999,unparseable dispatch: 0
+3b. Deduplicate on shipment_id,5000,999,removed 4 ID-level duplicates
+4. Logical checks,5000,1019,"timestamp order fixed/NaN: 20, negative distance sign-fixed: 14"
+"5. Outlier detection (IQR, log scale, k=3 weight/distance, k=2 cost)",5000,1242,outliers set to NaN for imputation
+6. Impute missing values,5000,169,numeric: group median by mode; categorical: 'Unknown'
+7. Normalisation,5000,0,log1p + z-score; min-max for distance
